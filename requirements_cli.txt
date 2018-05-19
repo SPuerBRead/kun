@@ -1,0 +1,9 @@
+requests==2.18.4
+prettytable==0.7.2
+pymongo==3.4.0
+paramiko==2.4.1
+mongoengine==0.10.7
+coloredlogs==9.0
+tldextract==2.2.0
+IPy==0.83
+redis==2.10.6
