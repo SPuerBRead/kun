@@ -101,8 +101,8 @@ class TargetLoader():
         spider_process.start()
 
     def StartDomainSpider(self):
-        spider = DomainSpider(args.scanner_mode, args.scan_args)
-        spider.RunSpider(self.domain_queue, self.spider_info)
+        spider = DomainSpider(args.scanner_mode, args.scan_args,self.domain_queue, self.spider_info)
+        spider.RunSpider()
 
     def StrToIp(self, ips_type):
         if ips_type == IPS_TYPE.IPS:

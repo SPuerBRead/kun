@@ -31,7 +31,7 @@
 
 * Linux
 * Mac OS X
-* 因为爬虫部分用了多进程，win下多进程不太一样，还没有进行测试，后边会改一下。
+* Windows下不建议使用，因为爬虫部分用了多进程，Windows下多进程不太一样，所以Windows下爬虫功能目前是不能用的，在终端下其他功能是可用的，但不确定是否存在编码问题，没有进行测试。Web端可以运行，因为程序使用Celery 3.1版本是支持Windows的，但没有进行测试。
 * 建议在Linux或者Mac OS X使用
 
 ## 安装：
@@ -50,14 +50,14 @@ apt install redis-server
 
 配置文件分为两种，web的配置文件和扫描器的配置文件
 
-web配置文件 
+web配置文件
 ```
-kun/config.py 
+kun/config.py
 ```
 
 web端连接mongo和redis的地址端口在这个配置文件下，默认是127.0.0.1:27017，127.0.0.1:6379
 
-扫描器的配置文件 
+扫描器的配置文件
 ```
 kun/kunscanner/lib/config/scanner.conf
 ```
@@ -127,6 +127,8 @@ Redis和MongoDB程序里都是没有设置连接密码的，需要保持只能�
 ![image](https://user-images.githubusercontent.com/18071202/40243760-a9b5c886-5af3-11e8-880a-21f9baab0b97.png)
 ### 利用API扫描
 ![image](https://user-images.githubusercontent.com/18071202/40244757-4fee539c-5af6-11e8-9150-cea5070a5202.png)
+### 利用爬虫扫描
+![image](https://user-images.githubusercontent.com/18071202/40275588-66f9cb1c-5c26-11e8-8b24-254e730d6290.png)
 ### 插件信息
 ![image](https://user-images.githubusercontent.com/18071202/40246377-21e75598-5afb-11e8-9a87-8b58511fe7ed.png)
 
@@ -248,5 +250,3 @@ result = CeyeApi(rangom_string)
 插件的数量目前比较少，只弄了几个比较常用的和比较新的，插件的准确性太重要了，许多流出来的老插件就没有改了，后边会慢慢提交，工作得做，Poc就还是会有==
 
 代码能力有限，bug肯定会有的==，结构和编码也都不是那么规范，后期逐渐修改。
-
-

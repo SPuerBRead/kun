@@ -5,9 +5,11 @@
 
 from enums import MESSAGE_LEVEL, EXCEPYION_POSITION, STATUS
 from output import OutPutPadding,InfoOutPut2Console,WriteLogToFile
+from common import Encode
 
 class LoadConfException(Exception):
     def __init__(self,message):
+        message = Encode(message)
         msg = OutPutPadding(message,MESSAGE_LEVEL.ERROR_LEVEL)
         InfoOutPut2Console(msg,MESSAGE_LEVEL.ERROR_LEVEL)
         WriteLogToFile(msg,MESSAGE_LEVEL.ERROR_LEVEL)
@@ -15,6 +17,9 @@ class LoadConfException(Exception):
 
 class PocWarningException(Exception):
     def __init__(self,target,script,exception):
+        target = Encode(target)
+        script = Encode(script)
+        exception = Encode(exception)
         warning_msg = "Warning in scanner! target: {0} poc: {1} msg: {2}"
         message = warning_msg.format(target,script,exception)
         msg = OutPutPadding(message,MESSAGE_LEVEL.WARNING_LEVEL)
@@ -23,6 +28,7 @@ class PocWarningException(Exception):
 
 class PocErrorException(Exception):
     def __init__(self,message):
+        message = Encode(message)
         msg = OutPutPadding(message,MESSAGE_LEVEL.ERROR_LEVEL)
         InfoOutPut2Console(msg,MESSAGE_LEVEL.ERROR_LEVEL)
         WriteLogToFile(msg,MESSAGE_LEVEL.ERROR_LEVEL)
@@ -33,6 +39,7 @@ class PocErrorException(Exception):
 
 class ArgsException(Exception):
     def __init__(self,message):
+        message = Encode(message)
         msg = OutPutPadding(message,MESSAGE_LEVEL.ERROR_LEVEL)
         InfoOutPut2Console(msg,MESSAGE_LEVEL.ERROR_LEVEL)
         WriteLogToFile(msg,MESSAGE_LEVEL.ERROR_LEVEL)
@@ -43,6 +50,7 @@ class ArgsException(Exception):
 
 class DatabaseException(Exception):
     def __init__(self,message):
+        message = Encode(message)
         msg = OutPutPadding(message,MESSAGE_LEVEL.ERROR_LEVEL)
         InfoOutPut2Console(msg,MESSAGE_LEVEL.ERROR_LEVEL)
         WriteLogToFile(msg,MESSAGE_LEVEL.ERROR_LEVEL)
@@ -50,6 +58,7 @@ class DatabaseException(Exception):
 
 class APIException(Exception):
     def __init__(self,message):
+        message = Encode(message)
         msg = OutPutPadding(message,MESSAGE_LEVEL.ERROR_LEVEL)
         InfoOutPut2Console(msg,MESSAGE_LEVEL.ERROR_LEVEL)
         WriteLogToFile(msg,MESSAGE_LEVEL.ERROR_LEVEL)
@@ -61,11 +70,11 @@ class APIException(Exception):
 
 class RequestsException():
     def __init__(self,exception,position,error_level,target,script = None):
-        self.exception = repr(exception)
-        self.position = position
-        self.target = target
-        self.script = script
-        self.error_level = error_level
+        self.exception = Encode(repr(exception))
+        self.position = Encode(position)
+        self.target = Encode(target)
+        self.script = Encode(script)
+        self.error_level = Encode(error_level)
         if 'ConnectionError' in self.exception:
             self.OutPutMessage('ConnectionError')
         if 'ConnectTimeout' in self.exception or 'ReadTimeout' in self.exception:

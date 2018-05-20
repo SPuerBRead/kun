@@ -33,6 +33,16 @@ def LoadDict(file_path):
             data.append(line.strip())
     return data
 
+def Encode(msg):
+    if isinstance(msg, unicode):
+        try:
+            msg = msg.encode(sys.stdout.encoding)
+        except:
+            msg = msg
+    else:
+        msg = msg
+    return msg
+
 
 
 

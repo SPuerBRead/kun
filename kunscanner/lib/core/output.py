@@ -10,20 +10,15 @@ from enums import SCANNER_MODE, MESSAGE_LEVEL,SYSTEM_TYPE,LOG_DEFAULT_LEN,SCRIPT
 from kunscanner.lib.utils.terminalsize import get_terminal_size
 from log import ConsoleLogger,FileLogger
 from prettytable import PrettyTable
+from kunscanner.lib.core.common import Encode
 
 def InfoOutPut2Console(msg,level = None):
     if args.scanner_mode == SCANNER_MODE.WEB:
         return
+    msg = Encode(msg)
     if level == None:
         print msg
         return
-    if isinstance(msg, unicode):
-        try:
-            msg = msg.encode(sys.stdout.encoding)
-        except:
-            msg = msg
-    else:
-        msg = msg
     width , height = get_terminal_size()
     indentation = width - len(msg)
     if level == MESSAGE_LEVEL.STATUS_LEVEL:
@@ -164,12 +159,12 @@ def WriteResultToFile(data):
 
 def OutputScriptInfo(data):
     if args.script_type == SCRIPT_TYPE.CUSTOM_SCRIPT:
+        table = PrettyTable(encoding=sys.stdout.encoding)
         for script in data:
-            table = PrettyTable()
             for key,value in script['object'].Info().items():
                 table.add_column(key,[value])
     elif args.script_type == SCRIPT_TYPE.ALL_SCRIPT:
-        table = PrettyTable(["name", "info","author","time","type","level"])
+        table = PrettyTable(["name", "info","author","time","type","level"],encoding=sys.stdout.encoding)
         for script in data:
             info = script['object'].Info()
             table.add_row([info['name'],info['info'],info['author'],

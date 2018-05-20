@@ -23,7 +23,7 @@ from kunscanner.lib.core.enums import SCRIPT_LEVEL
 def Info():
     poc_info = OrderedDict()
     poc_info['name'] = "couchdb_exec"
-    poc_info['info'] = "couchdb remote code execution (CVE–2017–12635 CVE–2017–12636)"
+    poc_info['info'] = "couchdb remote code execution (CVE-2017–12635 CVE–2017–12636)"
     poc_info['title'] = u'CouchDB远程代码执行'
     poc_info['author'] = "hayasec"
     poc_info['time'] = "2018.04.30"

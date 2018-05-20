@@ -20,18 +20,20 @@ from log import SetLogger
 from argsparse import SetOptions
 from output import OutPutPadding,InfoOutPut2Console
 from kunscanner.lib.utils.utils import GetHeader,LoadDict
-
+from kunscanner.lib.core.common import Encode
 from kunscanner.lib.core import SetArgs, SetConfig, SetPath
 
 
 class DomainSpider():
-    def __init__(self, scanner_mode, scan_args):
+    def __init__(self, scanner_mode, scan_args,domain_queue, spider_info):
         GetSystemType()
         if conf.SYSTEM_TYPE == SYSTEM_TYPE.WINDOWS:
             self.InitSetting(scanner_mode, scan_args)
         self.spider_type = int(conf.SPIDER_TYPE)
         self.spider_status = False
         self.spider_queue = Queue.Queue()
+        self.spider_info = spider_info
+        self.domain_queue = domain_queue
         if self.spider_type == int(SPIDER_TYPE.DEPTH_SPIDER):
             self.domain = args.spider_init_url
             self.max_depth = conf.SPIDER_DEPTH
@@ -66,11 +68,9 @@ class DomainSpider():
             SetArgs(scanner_mode, scan_args)
         SetOptions()
 
-    def RunSpider(self, domain_queue, spider_info):
+    def RunSpider(self):
         msg = OutPutPadding('The spider started to run', MESSAGE_LEVEL.INFO_LEVEL)
         InfoOutPut2Console(msg, MESSAGE_LEVEL.INFO_LEVEL)
-        self.spider_info = spider_info
-        self.domain_queue = domain_queue
         self.domain_queue.put(self.domain)
         self.spider_queue.put(self.domain)
         if self.spider_type == int(SPIDER_TYPE.DEPTH_SPIDER):
@@ -140,13 +140,7 @@ class DomainSpider():
 
     def AddToQueue(self, domains):
         for domain in domains:
-            if isinstance(domain, unicode):
-                try:
-                    domain = domain.encode(sys.stdout.encoding)
-                except:
-                    domain = domain
-            else:
-                domain = domain
+            domain = Encode(domain)
             try:
                 domain_netloc = urlparse.urlparse(domain).netloc
             except:
