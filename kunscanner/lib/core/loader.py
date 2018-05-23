@@ -242,7 +242,8 @@ class ScriptLoader():
         for root, dirs, scripts in os.walk(path.SCRIPTS_PATH + '/' + directory_name):
             for script in scripts:
                 script_info = {}
-                if '__init__' not in script and 'pyc' not in script and 'py' in script:
+                ext = script.split('.')[-1]
+                if '__init__' not in script and ext == 'py':
                     script_info['name'] = script.split('.')[0]
                     script_info['path'] = root
                     script_list.append(script_info)

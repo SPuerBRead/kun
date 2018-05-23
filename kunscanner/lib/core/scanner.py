@@ -171,14 +171,12 @@ class Scanner():
         self.lock.release()
 
     def OutPutSuccessInfo(self,data):
-        msg_list = []
         if data['type'] == 'attack':
             if data['result']['message'] == '':
                 msg = 'FOUND! target: ' + data['target'] + ' script: ' + data['script']
             else:
                 msg = 'FOUND! target: ' + data['target'] + ' script: ' + data['script'] + ' message: ' + \
                       data['result']['message']
-            msg_list.append(msg)
         # if data['type'] == 'info':
         #     for key,value in data['result'].items():
         #         if value:
@@ -187,10 +185,10 @@ class Scanner():
         #         else:
         #             msg_list.append('[+] '+'target: ' + data['target'] + ' script: ' + data['script']+' '
         #                             +str(key)+': '+'unknown')
-        for msg in msg_list:
             msg = OutPutPadding(msg, MESSAGE_LEVEL.INFO_LEVEL)
+            self.lock.acquire()
             InfoOutPut2Console(msg, MESSAGE_LEVEL.INFO_LEVEL)
-
+            self.lock.release()
 
     def StatisticalSuccessNumber(self):
         self.lock.acquire()
@@ -201,6 +199,7 @@ class Scanner():
     def ResultFormat(self,data):
         is_exist = False
         result_dict_tmp = {}
+        self.lock.acquire()
         for each in self.scan_result:
             if each['target'] == data['target']:
                 single_script_result_dict = {}
@@ -212,11 +211,10 @@ class Scanner():
                     single_script_result_dict['script_name'] = data['script']
                     single_script_result_dict['script_type'] = 'info'
                     single_script_result_dict['items'] = data['result']
-                self.lock.acquire()
                 each['result'].append(single_script_result_dict)
-                self.lock.release()
                 is_exist = True
                 break
+        self.lock.release()
         if is_exist == False:
             result_dict_tmp['target'] = data['target']
             result_dict_tmp['result'] = []
