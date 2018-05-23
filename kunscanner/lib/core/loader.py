@@ -80,8 +80,10 @@ class TargetLoader():
         with open(path.START_PATH + '/' + args.target_file) as f:
             data = f.readlines()
             for line in data:
-                if self.CheckIp(line.strip()) or self.CheckDomain(line.strip()):
-                    self.domain_list.append(line.strip())
+                line = line.strip()
+                if line:
+                    if self.CheckIp(line) or self.CheckDomain(line):
+                        self.domain_list.append(line.strip())
 
     def LoadApiTarget(self):
         if args.api_type == API_TYPE.ZOOMEYE:

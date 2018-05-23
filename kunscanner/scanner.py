@@ -38,7 +38,7 @@ def Main(scanner_mode, scan_args=None):
         data = engine.Run()
 
     except ArgsException:
-        SysQuit()
+        SysQuit(1)
     except DatabaseException:
         SysQuit()
     return data
