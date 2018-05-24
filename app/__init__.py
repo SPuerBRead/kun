@@ -7,7 +7,6 @@ from flask import Flask
 from extensions import celery,login_manager
 from view import kun
 from models import db
-from flask_cors import *
 
 def CreateApp():
     app = Flask(__name__)
@@ -16,7 +15,6 @@ def CreateApp():
     InitmongoDB(app)
     InitLogin(app)
     RegisterBlueprints(app)
-    CORS(app, supports_credentials=True)
     return app
 
 
