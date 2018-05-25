@@ -7,7 +7,6 @@ pymongo==3.4.0
 paramiko==2.4.1
 celery==3.1.25
 mongoengine==0.10.7
-Flask_Cors==3.0.3
 coloredlogs==9.0
 Flask_Login==0.4.0
 tldextract==2.2.0
