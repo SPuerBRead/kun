@@ -239,7 +239,7 @@ result = CeyeApi(rangom_string)
 ### 插件注意事项
 插件请求的时间需要插件自己控制，requests或者socket的超时时间等，requests有时会出现加了timeout仍然卡死的现象，可以在函数中设置socket.setdefaulttimeout()
 
-##更新
+## 更新
 
 * 2018.5.26 增加百度域名采集
 
