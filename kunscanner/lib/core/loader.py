@@ -14,6 +14,7 @@ import IPy
 import re
 import os
 from kunscanner.lib.api.zoomeye import ZoomeyeApi
+from kunscanner.lib.api.baidu import BaiduApi
 from spider import DomainSpider
 import imp
 
@@ -88,6 +89,8 @@ class TargetLoader():
     def LoadApiTarget(self):
         if args.api_type == API_TYPE.ZOOMEYE:
             api = ZoomeyeApi()
+        if args.api_type == API_TYPE.BAIDU:
+            api = BaiduApi()
         try:
             self.domain_list = api.Run()
         except APIException:

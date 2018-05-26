@@ -44,7 +44,7 @@ def Poc(url):
             return result
         else:
             r = requests.get(url+'/'+random_str+'.txt', timeout = 5)
-            if r.status_code == 200 and random_str in r.text and 'html' not in r.text:
+            if r.status_code == 200 and random_str == r.text.strip():
                 result['success'] = True
                 result['message'] = 'random_file: /'+random_str+'.txt'
             return result

@@ -8,8 +8,8 @@ import requests
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
 from kunscanner.lib.core.data import conf, args
-from kunscanner.lib.core.enums import API_LOGIN_TYPE, EXCEPYION_POSITION
-from kunscanner.lib.core.exception import APIException, RequestsException, MESSAGE_LEVEL
+from kunscanner.lib.core.enums import API_LOGIN_TYPE, EXCEPYION_POSITION, MESSAGE_LEVEL
+from kunscanner.lib.core.exception import APIException, RequestsException
 from kunscanner.lib.core.output import OutPutPadding,InfoOutPut2Console
 
 if args.use_database == True:

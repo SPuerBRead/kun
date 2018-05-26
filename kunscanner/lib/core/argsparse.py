@@ -33,7 +33,10 @@ def SetOptions():
         args.scan_type = TARGET_TYPE.API
         args.api_type = API_TYPE.ZOOMEYE
         args.user_input_target = args.zoomeye
-
+    elif args.baidu != None:
+        args.scan_type = TARGET_TYPE.API
+        args.api_type = API_TYPE.BAIDU
+        args.user_input_target = args.baidu
     else:
         args.scan_type = None
     '''

@@ -28,8 +28,11 @@ def CmdLineParser():
                         help="Spider will start from this domain")
 
     api = parser.add_argument_group('API')
-    api.add_argument('--zoomeye', metavar='KEYWORD', dest="zoomeye", type=str, default=None,
+    api.add_argument('--zoomeye', metavar='ZOOMEYE KEYWORD', dest="zoomeye", type=str, default=None,
                      help="Use zoomeye api to get the target (e.g. --zoomeye \"port:6379\")")
+
+    api.add_argument('--baidu',metavar='BAIDU KEYWORD', dest="baidu", type=str, default=None,
+                     help="Use baidu spider to get the target (e.g. --baidu inurl:/user/register)")
 
     api.add_argument('--zt',metavar='ZOOMEYE SEARCH TYPE',dest="zoomeye_search_type",type=str,default=None,
                      help="Zoomeye target type web or host,default setting (ZOOMEYE_SEARCH_TYPE)")

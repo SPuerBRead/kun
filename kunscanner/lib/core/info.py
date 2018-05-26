@@ -15,10 +15,10 @@ def Banner():
  /_/|_| \__,_//_/ /_/                update time: {2}    scripts number: {3}
 """
 
-    update_time = '2018.03.28'
+    update_time = '2018.05.26'
     script_number = ScriptsNumber()
     author = 'Xmchx'
-    version = 'v1.1'
+    version = 'v1.2'
 
     return Banner.format(author,version,update_time,script_number)
 
