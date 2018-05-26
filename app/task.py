@@ -49,6 +49,14 @@ def ApiScanTask(self,api_name,keyword,script,task_name,number,search_type):
         server_args['max_number'] = number
         server_args['zoomeye_search_type'] = search_type
         NewScan(server_args)
+    if api_name == 'baidu':
+        server_args['baidu'] = keyword
+        server_args['custom_scripts'] = script
+        server_args['task_name'] = task_name
+        server_args['task_id'] = self.request.id
+        server_args['max_number'] = number
+        NewScan(server_args)
+
 
 
 @celery.task(bind=True)

@@ -31,6 +31,8 @@ def GetSeverArgs():
 
         "zoomeye":None,
 
+        "baidu":None,
+
         "task_id":None,
 
         "update_script_info":False,

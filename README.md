@@ -129,9 +129,10 @@ Redis和MongoDB程序里都是没有设置连接密码的，需要保持只能�
 ![image](https://user-images.githubusercontent.com/18071202/40244757-4fee539c-5af6-11e8-9150-cea5070a5202.png)
 ### 利用爬虫扫描
 ![image](https://user-images.githubusercontent.com/18071202/40275588-66f9cb1c-5c26-11e8-8b24-254e730d6290.png)
+### 百度获取目标扫描
+![image](https://user-images.githubusercontent.com/18071202/40577565-58119922-613a-11e8-8e9e-c6e5c2dba438.png)
 ### 插件信息
 ![image](https://user-images.githubusercontent.com/18071202/40246377-21e75598-5afb-11e8-9a87-8b58511fe7ed.png)
-
 ## 程序流程
 ![image](https://user-images.githubusercontent.com/18071202/40247370-bd036eec-5afe-11e8-969c-cc960a2cb2f5.png)
 
