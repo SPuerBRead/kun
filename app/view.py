@@ -22,7 +22,7 @@ from extensions import celery
 from models import Result, Script, Status, Task, User, Vuln
 from task import UrlScanTask, IPSScanTask, SpiderScanTask, ApiScanTask, FileScanTask
 from kunscanner.webapi import ScriptsInfo, APIInfo
-from data import TASKTYPE,STATUS
+from data import TASKTYPE,STATUS,APINAME
 
 kun = Blueprint('kun', __name__)
 
@@ -473,22 +473,35 @@ def AddNewTask():
         file = request.files['file']
         file_path = FileUpload(file)
         message = AddFileTask(file_path,script,task_name)
-    if task_type == TASKTYPE.API:
-        api_name = data['api_name']
-        keyword = data['keyword']
-        script = data['script']
+    if int(task_type) == TASKTYPE.API:
+        print 1
+        keyword = None
+        number = None
+        search_type = None
+        file_path = None
         try:
-            number = int(data['number'])
+            api_name = data['api_name']
         except:
-            number = None
-        if api_name == 'zoomeye':
-            try:
-                search_type = data['search_type']
-            except:
-                search_type = None
+            api_name = request.form['api_name']
+        if api_name == APINAME.SUBDOMAIN:
+            file = request.files['file']
+            file_path = FileUpload(file)
+            script = request.form['script']
         else:
-            search_type = None
-        message = AddApiTask(api_name,keyword,script,task_name,number,search_type)
+            keyword = data['keyword']
+            script = data['script']
+            try:
+                number = int(data['number'])
+            except:
+                number = None
+            if api_name == APINAME.ZOOMEYE:
+                try:
+                    search_type = data['search_type']
+                except:
+                    search_type = None
+            else:
+                search_type = None
+        message = AddApiTask(api_name,keyword,script,task_name,number,search_type,file_path)
     return json.dumps(message)
 
 def AddUrlTask(target,scripts,task_name):
@@ -533,9 +546,9 @@ def AddSpiderTask(target,scripts,task_name,number):
     message = CreateTaskToDatabase(task.id, task_name)
     return message
 
-def AddApiTask(api_name,keyword,scripts,task_name,number,search_type):
+def AddApiTask(api_name,keyword,scripts,task_name,number,search_type,file_path):
     message = {}
-    if api_name == 'zoomeye':
+    if api_name == APINAME.ZOOMEYE:
         search_type_list = ['web','host']
         if search_type not in search_type_list and search_type:
             message['success'] = False
@@ -549,11 +562,12 @@ def AddApiTask(api_name,keyword,scripts,task_name,number,search_type):
     result = CheckScript(scripts_name)
     if result != True:
         return result
-    if not keyword:
-        message['success'] = False
-        message['message'] = u'请输入查询API的关键字'
-        return message
-    task = ApiScanTask.apply_async(args=[api_name, keyword, scripts_name, task_name, number,search_type])
+    if api_name == APINAME.ZOOMEYE or api_name == APINAME.BAIDU:
+        if not keyword:
+            message['success'] = False
+            message['message'] = u'请输入查询API的关键字'
+            return message
+    task = ApiScanTask.apply_async(args=[api_name, keyword, scripts_name, task_name, number,search_type,file_path])
     message = CreateTaskToDatabase(task.id, task_name)
     return message
 

@@ -36,6 +36,7 @@ class TARGET_TYPE:
 class API_TYPE:
     ZOOMEYE = 'zoomeye'
     BAIDU = 'baidu'
+    SUBDOMAIN = 'subDomainsBrute'
 
 class SCRIPT_TYPE:
     CUSTOM_SCRIPT = "custom script"

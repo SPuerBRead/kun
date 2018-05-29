@@ -5,7 +5,7 @@
 
 from extensions import celery
 from kunscanner.webapi import NewScan
-from data import GetSeverArgs
+from data import GetSeverArgs,APINAME
 
 
 @celery.task(bind=True)
@@ -39,9 +39,9 @@ def SpiderScanTask(self,target,script,task_name,number):
 
 
 @celery.task(bind=True)
-def ApiScanTask(self,api_name,keyword,script,task_name,number,search_type):
+def ApiScanTask(self,api_name,keyword,script,task_name,number,search_type,file_path):
     server_args = GetSeverArgs()
-    if api_name == 'zoomeye':
+    if api_name == APINAME.ZOOMEYE:
         server_args['zoomeye'] = keyword
         server_args['custom_scripts'] = script
         server_args['task_name'] = task_name
@@ -49,12 +49,18 @@ def ApiScanTask(self,api_name,keyword,script,task_name,number,search_type):
         server_args['max_number'] = number
         server_args['zoomeye_search_type'] = search_type
         NewScan(server_args)
-    if api_name == 'baidu':
+    if api_name == APINAME.BAIDU:
         server_args['baidu'] = keyword
         server_args['custom_scripts'] = script
         server_args['task_name'] = task_name
         server_args['task_id'] = self.request.id
         server_args['max_number'] = number
+        NewScan(server_args)
+    if api_name == APINAME.SUBDOMAIN:
+        server_args['subdomain'] = file_path
+        server_args['custom_scripts'] = script
+        server_args['task_name'] = task_name
+        server_args['task_id'] = self.request.id
         NewScan(server_args)
 
 

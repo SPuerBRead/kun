@@ -37,6 +37,10 @@ def SetOptions():
         args.scan_type = TARGET_TYPE.API
         args.api_type = API_TYPE.BAIDU
         args.user_input_target = args.baidu
+    elif args.subdomain != None:
+        args.scan_type = TARGET_TYPE.API
+        args.api_type = API_TYPE.SUBDOMAIN
+        args.user_input_target = args.subdomain
     else:
         args.scan_type = None
     '''

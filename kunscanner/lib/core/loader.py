@@ -15,6 +15,7 @@ import re
 import os
 from kunscanner.lib.api.zoomeye import ZoomeyeApi
 from kunscanner.lib.api.baidu import BaiduApi
+from kunscanner.lib.api.subDomainsBrute import SubDomainsBruteApi
 from spider import DomainSpider
 import imp
 
@@ -60,6 +61,8 @@ class TargetLoader():
             msg = OutPutPadding(api_type_msg.format(args.api_type), MESSAGE_LEVEL.INFO_LEVEL)
             InfoOutPut2Console(msg, MESSAGE_LEVEL.INFO_LEVEL)
             self.LoadApiTarget()
+            msg = OutPutPadding(target_number_msg.format(str(len(self.domain_list))), MESSAGE_LEVEL.INFO_LEVEL)
+            InfoOutPut2Console(msg, MESSAGE_LEVEL.INFO_LEVEL)
 
     def LoadSingleTarget(self):
         if self.CheckIp(args.url) or self.CheckDomain(args.url):
@@ -91,6 +94,8 @@ class TargetLoader():
             api = ZoomeyeApi()
         if args.api_type == API_TYPE.BAIDU:
             api = BaiduApi()
+        if args.api_type == API_TYPE.SUBDOMAIN:
+            api = SubDomainsBruteApi()
         try:
             self.domain_list = api.Run()
         except APIException:

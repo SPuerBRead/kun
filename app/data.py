@@ -39,7 +39,9 @@ def GetSeverArgs():
 
         "task_name":None,
 
-        "zoomeye_search_type":None
+        "zoomeye_search_type":None,
+
+        "subdomain":None
     }
     return server_args
 
@@ -49,6 +51,11 @@ class TASKTYPE:
     API = 2
     SPIDER = 3
     FILE = 4
+
+class APINAME:
+    ZOOMEYE = 'zoomeye'
+    BAIDU = 'baidu'
+    SUBDOMAIN = 'subDomainsBrute'
 
 class STATUS:
     WAIT = 'Waiting'
