@@ -252,6 +252,7 @@ result = CeyeApi(rangom_string)
 ## 更新
 
 * 2018.5.26 增加百度域名采集
+* 2018.5.31 增加subDomainsBrute模块
 
 ## 感谢
 
