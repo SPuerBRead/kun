@@ -420,8 +420,9 @@ def ScriptUpdate():
                     script_level=script['level'],
                     script_title=script['title']
                 ).save()
-    except:
+    except Exception,e:
         message['success'] = False
+        message['message'] = repr(e)
         return json.dumps(message)
     message['success'] = True
     message['message'] = time.strftime("%Y/%m.%d %H:%M:%S", time.localtime())

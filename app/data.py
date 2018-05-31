@@ -7,21 +7,17 @@ def GetSeverArgs():
     server_args = {
         "all_scripts":False,
 
-        "api_max_number":None,
+        "max_number":None,
 
         "custom_scripts":None,
-
-        "default_scripts":False,
 
         "ip_segment":None,
 
         "output_file_name":None,
 
-        "server":None,
+        "custom_scripts_info":False,
 
-        "show_all_scripts":False,
-
-        "show_script_info":None,
+        "all_scripts_info":None,
 
         "spider_init_url":None,
 
@@ -41,9 +37,14 @@ def GetSeverArgs():
 
         "zoomeye_search_type":None,
 
-        "subdomain":None
+        "subdomain":None,
+
+        "custom_scripts_info":None,
+
+        "search_script":None
     }
     return server_args
+
 
 class TASKTYPE:
     URL = 0

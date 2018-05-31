@@ -72,19 +72,44 @@ def NewScan(args):
 
 def ScriptsInfo():
     args = {
-        "all_scripts": False,
-        "api_max_number": None,
-        "custom_scripts": None,
-        "default_scripts": False,
-        "ip_segment": None,
-        "output_file_name": None,
-        "all_scripts_info": True,
-        "custom_scripts_info": None,
-        "spider_init_url": None,
-        "target_file": None,
-        "task_name": None,
-        "url": None,
-        "zoomeye": None
+
+        "all_scripts":False,
+
+        "max_number":None,
+
+        "custom_scripts":None,
+
+        "ip_segment":None,
+
+        "output_file_name":None,
+
+        "custom_scripts_info":None,
+
+        "all_scripts_info":True,
+
+        "spider_init_url":None,
+
+        "target_file":None,
+
+        "url":None,
+
+        "zoomeye":None,
+
+        "baidu":None,
+
+        "task_id":None,
+
+        "update_script_info":False,
+
+        "task_name":None,
+
+        "zoomeye_search_type":None,
+
+        "subdomain":None,
+
+        "search_script": None,
+
+        "custom_scripts_info":None
     }
     return RunScanner('web',args)
 
