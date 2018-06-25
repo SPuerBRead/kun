@@ -42,6 +42,7 @@ def Poc(url):
         }
         r = requests.get(url, headers = payload, timeout=5)
         if random_str in r.text and 'html' not in r.text:
+            result['message'] = url
             result['success'] = True
         return result
     except Exception,e:
