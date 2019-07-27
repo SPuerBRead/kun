@@ -1,4 +1,4 @@
-# kun scanner
+# kun scanner (项目重构，不再更新)
 插件化漏洞扫描器
 
 ## 简介：
