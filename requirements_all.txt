@@ -5,7 +5,7 @@ flask_mongoengine==0.8
 prettytable==0.7.2
 pymongo==3.4.0
 paramiko==2.4.2
-celery==3.1.25
+celery==5.2.2
 mongoengine==0.10.7
 coloredlogs==9.0
 Flask_Login==0.4.0
