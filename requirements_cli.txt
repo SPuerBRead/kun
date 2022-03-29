@@ -1,7 +1,7 @@
 requests==2.20.0
 prettytable==0.7.2
 pymongo==3.4.0
-paramiko==2.4.2
+paramiko==2.10.1
 mongoengine==0.10.7
 coloredlogs==9.0
 tldextract==2.2.0
