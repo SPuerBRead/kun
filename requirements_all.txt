@@ -1,6 +1,6 @@
 Flask==1.0
 requests==2.20.0
-Werkzeug==0.15.3
+Werkzeug==0.15.5
 flask_mongoengine==0.8
 prettytable==0.7.2
 pymongo==3.4.0
